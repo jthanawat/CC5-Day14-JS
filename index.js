@@ -39,16 +39,16 @@ alert(user.ref().name); // What's the result?
 
 let calculator = {
   read() {
-    x = +prompt("Insert x number");
-    y = +prompt("insert y number");
+    this.x = +prompt("Insert x number");
+    this.y = +prompt("insert y number");
   },
 
   sum() {
-    return x + y;
+    return this.x + this.y;
   },
 
   mul() {
-    return x * y;
+    return this.x * this.y;
   }
 };
 
@@ -56,18 +56,27 @@ calculator.read();
 alert( calculator.sum() );
 alert( calculator.mul() );
 
-
 //Exercise
 
 let ladder = {
   step: 0,
   up() {
-    this.step++;
+    this.step++
+    return this;
   },
   down() {
-    this.step--;
+    this.step--
+    return this;
   },
-  showStep: function() { // shows the current step
-    alert( this.step );
+  showStep() { 
+    alert( this.step )
+    return this;
   }
 };
+
+ladder.up().up().down().showStep(); // 1
+
+// ladder.up();
+// ladder.up();
+// ladder.down();
+// ladder.showStep(); 
